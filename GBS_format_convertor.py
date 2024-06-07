@@ -130,6 +130,36 @@ data.to_csv(output_filename, header=False, index=False, sep=' ')
 
 
 
+import json
+
+# Step 1: Read the JSON file into a Python list of lists
+filename = 'input.json'
+with open(filename, 'r') as file:
+    data = json.load(file)
+
+# Step 2: Loop through the list of lists and add specified values to each row and column
+for i in range(len(data)):  # Iterate through rows
+    for j in range(len(data[i])):  # Iterate through columns
+        if i == 0:
+            data[i][j] += 1
+        elif i == 1:
+            data[i][j] += 2
+        else:
+            data[i][j] += 3
+        
+        if j == 0:
+            data[i][j] += 3
+        elif j == 1:
+            data[i][j] += 4
+        else:
+            data[i][j] += 5
+
+# Step 3: Write the modified list of lists back to a JSON file
+output_filename = 'output.json'
+with open(output_filename, 'w') as file:
+    json.dump(data, file, indent=4)
+    
+    
 
 
 
