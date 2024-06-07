@@ -49,3 +49,211 @@ df1_transposed = Database2.T
 df1_transposed.to_csv('python_Agriflex_matrixAB.txt', sep='\t', header=False, index=True)
 
 # the end. 
+
+
+import numpy as np
+
+# Step 1: Read the text file into a numpy array
+filename = 'input.txt'
+data = np.loadtxt(filename)
+
+# Step 2: Loop through the array and add specified values to each row
+for i in range(data.shape[0]):
+    if i == 0:
+        data[i] += 1
+    elif i == 1:
+        data[i] += 2
+    else:
+        data[i] += 3
+
+# Step 3: Write the modified array to a new file
+output_filename = 'output.txt'
+np.savetxt(output_filename, data, fmt='%f')
+
+
+
+import numpy as np
+
+# Step 1: Read the text file into a numpy array
+filename = 'input.txt'
+data = np.loadtxt(filename)
+
+# Step 2: Loop through the array and add specified values to each row and column
+for i in range(data.shape[0]):  # Iterate through rows
+    for j in range(data.shape[1]):  # Iterate through columns
+        if i == 0:
+            data[i, j] += 1
+        elif i == 1:
+            data[i, j] += 2
+        else:
+            data[i, j] += 3
+        
+        if j == 0:
+            data[i, j] += 3
+        elif j == 1:
+            data[i, j] += 4
+        else:
+            data[i, j] += 5
+
+# Step 3: Write the modified array to a new file
+output_filename = 'output.txt'
+np.savetxt(output_filename, data, fmt='%f')
+
+
+
+import pandas as pd
+
+# Step 1: Read the text file into a pandas DataFrame
+filename = 'input.txt'
+data = pd.read_csv(filename, header=None, delim_whitespace=True)
+
+# Step 2: Loop through the DataFrame and add specified values to each row and column
+for i in range(data.shape[0]):  # Iterate through rows
+    for j in range(data.shape[1]):  # Iterate through columns
+        if i == 0:
+            data.iloc[i, j] += 1
+        elif i == 1:
+            data.iloc[i, j] += 2
+        else:
+            data.iloc[i, j] += 3
+        
+        if j == 0:
+            data.iloc[i, j] += 3
+        elif j == 1:
+            data.iloc[i, j] += 4
+        else:
+            data.iloc[i, j] += 5
+
+# Step 3: Write the modified DataFrame to a new file
+output_filename = 'output.txt'
+data.to_csv(output_filename, header=False, index=False, sep=' ')
+
+
+
+
+
+
+# 2877. Create a DataFrame from List
+
+import pandas as pd
+
+def createDataframe(student_data: List[List[int]]) -> pd.DataFrame:
+   student_data=pd.DataFrame(student_data,columns =['student_id', 'age'])
+   return student_data
+
+# 2878. Get the Size of a DataFrame
+import pandas as pd
+
+def getDataframeSize(players: pd.DataFrame) -> List[int]:
+    return [players.shape[0], players.shape[1]]
+
+# 2879. Display the First Three Rows
+
+import pandas as pd
+
+def selectFirstRows(employees: pd.DataFrame) -> pd.DataFrame:
+    return employees.head(3)
+    
+    
+
+# 2880. Select Data
+
+import pandas as pd
+
+def selectData(students: pd.DataFrame) -> pd.DataFrame:
+    students2=students.loc[students['student_id']==101]
+    return students2[['name','age']]
+
+
+# 2881. Create a New Column
+
+import pandas as pd
+
+def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees['bonus']=employees['salary']*2
+    return employees
+
+
+# pandas cheatsheet. 
+
+# keep the first duplicate value
+import pandas as pd
+
+def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
+    result=customers.drop_duplicates(subset=['email'], keep="first", inplace=False)
+    return result
+
+# remove the none value
+import pandas as pd
+
+def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
+    #students=pd.DataFrame(students)
+    result=students.dropna(subset=['name'])
+    return result
+
+# double one column value.
+import pandas as pd
+
+def modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees['salary']=employees['salary']*2
+    return employees
+
+
+# rename the column name.
+import pandas as pd
+
+def renameColumns(students: pd.DataFrame) -> pd.DataFrame:
+    students=students.rename(columns={"id": "student_id", "first": "first_name", "last": "last_name", "age": "age_in_years"})
+    return students
+
+# change it to int for one columns value. 
+import pandas as pd
+
+def changeDatatype(students: pd.DataFrame) -> pd.DataFrame:
+    students['grade'] = students['grade'].astype(int)
+    return students
+
+
+# fill na value. 
+import pandas as pd
+
+def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
+    products=products.fillna(0)
+    return products
+
+# concat two data frame table. 
+import pandas as pd
+
+def concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
+    df3=pd.concat([df1, df2], ignore_index=True, axis=0)
+    return df3
+
+# pivot 
+import pandas as pd
+
+def pivotTable(weather: pd.DataFrame) -> pd.DataFrame:
+    pivoted = weather.pivot(index="month", columns="city", values="temperature")
+    return pivoted
+
+
+import pandas as pd
+
+def meltTable(report: pd.DataFrame) -> pd.DataFrame:
+    result=pd.melt(report,id_vars=['product'],var_name='quarter',value_name='sales')
+    return result
+
+
+# subset one column and then sort by another column, and output one column. 
+import pandas as pd
+
+def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
+    animal1 = animals[animals["weight"] > 100]
+    animal2=animal1.sort_values(by=['weight'],ascending=False)
+    return animal2[["name"]]
+
+
+
+
+
+
+
