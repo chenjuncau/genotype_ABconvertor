@@ -161,6 +161,44 @@ with open(output_filename, 'w') as file:
     
     
 
+lst = [11,18,9,12,23,4,17]
+lost = []
+for idx in range(len(lst)):
+ val = lst[idx]
+ if val > 15:
+ lost.append(val)
+ lst[idx] = 15
+print("modif:",lst,"-lost:",lost)
+
+
+#Looping through all key-value pairs
+fav_numbers = {'eric': 17, 'ever': 4}
+for name, number in fav_numbers.items():
+ print(name + ' loves ' + str(number))
+#Looping through all keys
+fav_numbers = {'eric': 17, 'ever': 4}
+for name in fav_numbers.keys():
+ print(name + ' loves a number')
+#Looping through all the values
+fav_numbers = {'eric': 17, 'ever': 4}
+for number in fav_numbers.values():
+ print(str(number) + ' is a favorite')
+ 
+    seen = set()
+   output_list = []
+   for item in input_list:
+       if item not in seen:
+           seen.add(item)
+           output_list.append(item)
+   return output_list
+
+
+def var_method_0(x):
+    n = len(x) # Number of samples
+    ### BEGIN SOLUTION
+    x_bar = sum(x) / n
+    return sum([(x_i - x_bar)**2 for x_i in x]) / (n-1)
+
 
 
 # 2877. Create a DataFrame from List
